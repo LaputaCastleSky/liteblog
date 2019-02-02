@@ -4,6 +4,8 @@ import (
 	_ "liteblog/routers"
 	"strings"
 
+	_ "liteblog/models"
+
 	"github.com/astaxie/beego"
 )
 
