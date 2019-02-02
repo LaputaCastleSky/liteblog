@@ -1,6 +1,5 @@
 package controllers
 
-import "fmt"
 
 type IndexController struct {
 	BaseController
@@ -13,7 +12,6 @@ func (c *IndexController) Get() {
 
 // @router /message [get]
 func (c *IndexController) GetMessage() {
-	fmt.Println("aaaa")
 	c.TplName = "message.html"
 }
 

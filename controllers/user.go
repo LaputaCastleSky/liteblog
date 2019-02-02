@@ -3,8 +3,6 @@ package controllers
 import (
 	"liteblog/models"
 	"strings"
-
-	"github.com/astaxie/beego"
 )
 
 type UserController struct {
@@ -16,13 +14,10 @@ func (c *UserController) Login() {
 	name := c.GetString("name")
 	password := c.GetString("password")
 
-	beego.Info("name:", name, "password:", password)
-
 	if false == models.AuthUser(name, password) {
 		c.Abort("name or password is invalid.")
 	}
 
-	// c.ServeJSON()
 	c.Redirect("/", 301)
 }
 
