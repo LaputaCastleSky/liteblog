@@ -32,11 +32,11 @@ func (u *User) Exist() bool {
 	return true
 }
 
-func AuthUser(name string, password string) bool {
+func AuthUser(name string, password string) (*User, bool) {
 	u := User{Name: name, Password: password}
 	err := orm.NewOrm().Read(&u, "Name", "Password")
 	if err == orm.ErrNoRows {
-		return false
+		return nil, false
 	}
-	return true
+	return &u, true
 }

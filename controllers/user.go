@@ -13,12 +13,13 @@ type UserController struct {
 func (c *UserController) Login() {
 	name := c.GetString("name")
 	password := c.GetString("password")
-
-	if false == models.AuthUser(name, password) {
+	u, result := models.AuthUser(name, password)
+	if result == false {
 		c.Abort("name or password is invalid.")
 	}
 
-	c.Redirect("/", 301)
+	c.SetSession(SESSION_USER_KEY, u)
+	c.JSONOk("login ok.", "/")
 }
 
 // @router /reg [post]
@@ -44,6 +45,5 @@ func (c *UserController) Reg() {
 	}
 
 	user.Save()
-
-	c.ServeJSON()
+	c.JSONOk("reg ok", "/user")
 }
